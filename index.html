@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>For Chloe ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Parisienne&display=swap');
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:"DM Sans",sans-serif;color:#5b2943}
+body{overflow-x:hidden;background:radial-gradient(circle at 20% 10%,#fff 0 8%,transparent 25%),linear-gradient(135deg,#fff0f7,#ffd5e7 48%,#ffb7d5);min-height:100vh}
+#app{min-height:100vh;display:grid;place-items:center;padding:20px;position:relative}
+.bg-heart{position:fixed;pointer-events:none;opacity:.18;font-size:24px;animation:float 8s linear infinite}
+@keyframes float{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+.card{width:min(760px,100%);min-height:640px;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.8);border-radius:34px;box-shadow:0 25px 80px rgba(151,42,91,.22);padding:clamp(25px,6vw,58px);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;width:260px;height:260px;background:#ff8fbd55;border-radius:50%;filter:blur(20px);right:-100px;top:-100px}
+.screen{display:none;animation:in .65s ease both}.screen.active{display:block}
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:11px;font-weight:700;color:#bd507b}
+h1,h2{font-family:"Cormorant Garamond",serif;margin:10px 0;color:#7b294e}
+h1{font-size:clamp(48px,10vw,84px);line-height:.9}h2{font-size:clamp(38px,7vw,60px);line-height:1}
+p{font-size:16px;line-height:1.75}.script{font-family:Parisienne,cursive;font-size:34px;color:#bd507b}
+.center{text-align:center}.soft{color:#86556b}.note{font-family:"Cormorant Garamond",serif;font-size:25px;line-height:1.45}
+button{border:0;cursor:pointer;font:600 15px "DM Sans";border-radius:999px;padding:15px 23px;background:linear-gradient(135deg,#d94f86,#f27eae);color:white;box-shadow:0 12px 25px #b72f6740;transition:.2s transform,.2s box-shadow}
+button:hover{transform:translateY(-2px);box-shadow:0 16px 30px #b72f6755}button.secondary{background:#fff;color:#a33f68;border:1px solid #f1b3cc;box-shadow:none}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:25px 0}
+.choice{padding:19px;text-align:left;background:#fff7fb;border:2px solid #f4c4d8;border-radius:22px;color:#71344f;box-shadow:none}
+.choice.selected{border-color:#d94f86;background:#ffe4ef;box-shadow:0 8px 20px #d94f8622}
+.choice b{display:block;margin-bottom:5px}.choice small{color:#9a667d;line-height:1.45}
+.progress{height:5px;background:#f6c7d9;border-radius:9px;margin-bottom:28px}.bar{height:100%;background:#d94f86;border-radius:9px;transition:.4s;width:10%}
+.timeline{display:grid;gap:12px;margin-top:24px}.tl{display:flex;gap:14px;align-items:flex-start;padding:16px;background:#fff7fb;border-radius:20px}.num{min-width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#ffd2e4;color:#a53d69;font-weight:700}
+.summary{background:#fff7fb;border:1px solid #f3c2d6;border-radius:25px;padding:24px;margin:20px 0}.summary strong{color:#a43c68}
+.affirm{display:inline-block;margin:6px;padding:10px 14px;border-radius:999px;background:#ffe1ed;color:#a53d69;font-size:13px}
+.bigheart{font-size:78px;animation:pulse 1.4s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.12)}}
+#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#6f2848;color:#fff;padding:11px 17px;border-radius:999px;display:none;z-index:10}
+@media(max-width:600px){.card{min-height:calc(100vh - 40px);border-radius:28px;padding:28px 20px}.options{grid-template-columns:1fr}h1{font-size:56px}.note{font-size:22px}}
+</style>
+</head>
+<body>
+<div id="floaters"></div><div id="app"><main class="card">
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<section class="screen active center" data-i="0">
+<div class="script">A little something for...</div><h1>Chloe ♡</h1>
+<p class="note">My princess. My baby.</p>
+<p class="soft">I could have just asked you what kind of date you want...<br>but where's the fun in that?</p>
+<div class="bigheart">♡</div>
+<div class="actions"><button onclick="next()">Open it, baby ♡</button></div>
+</section>
+
+<section class="screen center" data-i="1">
+<div class="eyebrow">Before we plan anything</div><h2>I've missed you.</h2>
+<p class="note">Like... genuinely.</p>
+<p>I haven't even seen you yet, and somehow I'm already looking forward to the moment I finally get to see you in person.</p>
+<p>So yes, my princess, I want a date. But more than that, <b>I want to spend some real time with you.</b></p>
+<div class="affirm">You are beautiful.</div><div class="affirm">You are worth the effort.</div><div class="affirm">You deserve to be adored.</div>
+<div class="actions"><button onclick="next()">Tell me what you want ♡</button></div>
+</section>
+
+<section class="screen" data-i="2">
+<div class="eyebrow">Question 01</div><h2>What kind of date<br>are you feeling, baby?</h2>
+<div class="options" id="moods">
+<button class="choice" data-v="Cozy & quiet" onclick="pick(this,'mood')"><b>🌙 Cozy & quiet</b><small>Somewhere calm, talking until we forget the time.</small></button>
+<button class="choice" data-v="Food & conversation" onclick="pick(this,'mood')"><b>🍝 Food & conversation</b><small>Good food, good conversation, zero rushing.</small></button>
+<button class="choice" data-v="Movie & cuddles" onclick="pick(this,'mood')"><b>🎬 Movie & cuddles</b><small>A movie, snacks, and being unnecessarily close.</small></button>
+<button class="choice" data-v="Explore together" onclick="pick(this,'mood')"><b>🌆 Explore together</b><small>Walk, discover somewhere, laugh, take pictures.</small></button>
+<button class="choice" data-v="Fun & chaotic" onclick="pick(this,'mood')"><b>🎮 Fun & chaotic</b><small>Games, teasing, laughing, and probably embarrassing each other.</small></button>
+<button class="choice" data-v="Surprise me" onclick="pick(this,'mood')"><b>💕 Surprise me</b><small>You choose. I'll just show up and look cute for you.</small></button>
+</div><div class="actions"><button onclick="next()">Next ♡</button></div>
+</section>
+
+<section class="screen" data-i="3">
+<div class="eyebrow">Question 02</div><h2>When should we make it happen?</h2>
+<div class="options">
+<button class="choice" data-v="Morning" onclick="pick(this,'time')"><b>☀️ Morning</b><small>Fresh start, coffee and you.</small></button>
+<button class="choice" data-v="Afternoon" onclick="pick(this,'time')"><b>🌤️ Afternoon</b><small>A whole little adventure.</small></button>
+<button class="choice" data-v="Sunset" onclick="pick(this,'time')"><b>🌅 Sunset</b><small>Pretty skies and pretty company.</small></button>
+<button class="choice" data-v="Evening" onclick="pick(this,'time')"><b>🌙 Evening</b><small>Slow, cozy and a little romantic.</small></button>
+</div><div class="actions"><button onclick="next()">Keep going ♡</button></div>
+</section>
+
+<section class="screen" data-i="4">
+<div class="eyebrow">Question 03</div><h2>What should our date feel like?</h2>
+<p class="soft">Pick as many as you want.</p>
+<div class="options" id="vibes">
+<button class="choice" data-v="Long conversations" onclick="toggle(this)"><b>💬 Long conversations</b><small>Tell me everything.</small></button>
+<button class="choice" data-v="Lots of laughs" onclick="toggle(this)"><b>😂 Lots of laughs</b><small>We should probably be ridiculous.</small></button>
+<button class="choice" data-v="Pictures together" onclick="toggle(this)"><b>📸 Pictures together</b><small>Evidence that this actually happened.</small></button>
+<button class="choice" data-v="Good food" onclick="toggle(this)"><b>🍰 Good food</b><small>This is important science.</small></button>
+<button class="choice" data-v="Long hugs" onclick="toggle(this)"><b>🫂 Long hugs</b><small>The kind where nobody rushes.</small></button>
+<button class="choice" data-v="Just us" onclick="toggle(this)"><b>💗 Just us</b><small>No pressure. Just being together.</small></button>
+</div><div class="actions"><button onclick="next()">That's enough questions ♡</button></div>
+</section>
+
+<section class="screen center" data-i="5">
+<div class="eyebrow">A little pause</div><h2>One thing, though...</h2>
+<p class="note">The date itself isn't really the point.</p>
+<p>I want the food. The laughs. The pictures. The conversations. All of that.</p>
+<p>But mostly, I want <b>the first time I finally get to see you.</b></p>
+<p>I want to hear your voice beside me, look at you and think, "So this is the girl I've been missing."</p>
+<p>My baby, whatever you choose, I'll be happy because <b>I'll be with you.</b></p>
+<div class="affirm">You are appreciated.</div><div class="affirm">You are special.</div><div class="affirm">You are gorgeous.</div><div class="affirm">You are enough.</div>
+<div class="actions"><button onclick="next()">Build our date ♡</button></div>
+</section>
+
+<section class="screen" data-i="6">
+<div class="eyebrow">Our little plan</div><h2>Chloe's date ♡</h2>
+<div class="summary" id="summary"></div>
+<p id="dynamic" class="note"></p>
+<div class="actions"><button onclick="next()">Imagine it with me ♡</button></div>
+</section>
+
+<section class="screen" data-i="7">
+<div class="eyebrow">Before I see you</div><h2>Before the date...</h2>
+<div class="timeline">
+<div class="tl"><span class="num">01</span><span>I'll probably think way too much about what to wear.</span></div>
+<div class="tl"><span class="num">02</span><span>I'll wonder what you're wearing.</span></div>
+<div class="tl"><span class="num">03</span><span>I'll check the time more than necessary.</span></div>
+<div class="tl"><span class="num">04</span><span>And I'll be ridiculously excited for that first hello.</span></div>
+</div><div class="actions"><button onclick="next()">Then we finally meet ♡</button></div>
+</section>
+
+<section class="screen" data-i="8">
+<div class="eyebrow">While we're together</div><h2>During our date...</h2>
+<div class="timeline">
+<div class="tl"><span class="num">01</span><span><b>The first hello.</b> Probably a little nervous. Definitely happy.</span></div>
+<div class="tl"><span class="num">02</span><span><b>The first laugh.</b> And then probably several more.</span></div>
+<div class="tl"><span class="num">03</span><span><b>The random conversations.</b> Because we won't stay on one topic for long.</span></div>
+<div class="tl"><span class="num">04</span><span><b>The pictures.</b> Yes, I'm keeping them.</span></div>
+<div class="tl"><span class="num">05</span><span><b>Just us.</b> Finally.</span></div>
+</div><div class="actions"><button onclick="next()">And after... ♡</button></div>
+</section>
+
+<section class="screen center" data-i="9">
+<div class="eyebrow">After our date</div><h2>I'll probably miss you again.</h2>
+<p class="note">I'll get home, look at the pictures, replay little moments in my head...</p>
+<p>...and realize that I somehow managed to spend time with the girl I wanted to see and still want more time with her.</p>
+<p class="note">That's your fault, princess.</p>
+<div class="affirm">Thank you for being you.</div><div class="affirm">Thank you for making me smile.</div><div class="affirm">You deserve soft love.</div><div class="affirm">You deserve reassurance.</div><div class="affirm">You deserve to feel wanted.</div>
+<div class="actions"><button onclick="next()">One last thing ♡</button></div>
+</section>
+
+<section class="screen center" data-i="10">
+<div class="bigheart">♥</div>
+<h2>So, Chloe...</h2>
+<p class="note">Whatever date you choose...</p>
+<h2 style="font-size:42px">I just want to see you.</h2>
+<p>My princess. My baby. The person I've been looking forward to meeting.</p>
+<p class="note">It's a date. ♡</p>
+<div class="actions"><button onclick="celebrate()">That's my choice ♡</button><button class="secondary" onclick="restart()">Replay</button></div>
+</section>
+
+<section class="screen center" data-i="11">
+<div class="script">For my baby...</div><h2>Thank you, Chloe. ♡</h2>
+<p class="note">I hope you know something:</p>
+<p>You are beautiful. You are wanted. You are appreciated. You are worth showing up for. You are worth listening to. You are worth making memories with.</p>
+<p>And whether our first date is quiet, chaotic, romantic, funny, or completely unexpected...</p>
+<h2 style="font-size:40px">I'm just glad it gets to be with you.</h2>
+<p class="script">See you soon, princess.</p>
+<div class="actions"><button onclick="restart()">Start again ♡</button></div>
+</section>
+
+</main></div><div id="toast"></div>
+<script>
+const state={mood:"",time:"",vibes:[]};let idx=0;
+const screens=[...document.querySelectorAll('.screen')],bar=document.getElementById('bar');
+function render(){screens.forEach((s,i)=>s.classList.toggle('active',i===idx));bar.style.width=((idx+1)/screens.length*100)+'%';if(idx===6)buildSummary();}
+function next(){if(idx===2&&!state.mood)return toast("Choose a date mood first, baby ♡");if(idx===3&&!state.time)return toast("Pick a time, princess ♡");if(idx<screens.length-1){idx++;render();}}
+function pick(el,key){document.querySelectorAll(`[data-v]`).forEach(x=>{if(x.closest('.options')===el.closest('.options'))x.classList.remove('selected')});el.classList.add('selected');state[key]=el.dataset.v;clickSound();}
+function toggle(el){el.classList.toggle('selected');const v=el.dataset.v;if(el.classList.contains('selected'))state.vibes.push(v);else state.vibes=state.vibes.filter(x=>x!==v);clickSound();}
+function buildSummary(){document.getElementById('summary').innerHTML=`<p><strong>Mood:</strong> ${state.mood}</p><p><strong>Time:</strong> ${state.time}</p><p><strong>Little things:</strong> ${state.vibes.length?state.vibes.join(" · "):"Just being together ♡"}</p>`;let extra=state.mood==="Surprise me"?"You chose surprise me... brave choice, baby. I'll make it worth it.":`So we're looking at a ${state.time.toLowerCase()} ${state.mood.toLowerCase()} date`;document.getElementById('dynamic').textContent=extra+". Either way, I'm already looking forward to seeing you.";}
+function toast(t){const x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',1800)}
+function restart(){idx=0;state.mood="";state.time="";state.vibes=[];document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));render();}
+function celebrate(){clickSound(true);for(let i=0;i<45;i++){const h=document.createElement('div');h.textContent=['♥','♡','✦','❀'][Math.floor(Math.random()*4)];h.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:55vh;font-size:${14+Math.random()*25}px;color:#d94f86;z-index:20;pointer-events:none;animation:float 2.4s linear forwards`;document.body.appendChild(h);setTimeout(()=>h.remove(),2400)};idx=11;render();}
+let audio;
+function clickSound(final=false){try{audio=audio||new (window.AudioContext||window.webkitAudioContext)();const o=audio.createOscillator(),g=audio.createGain();o.type='sine';o.frequency.value=final?880:660;g.gain.setValueAtTime(.0001,audio.currentTime);g.gain.exponentialRampToValueAtTime(.05,audio.currentTime+.01);g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.18);o.connect(g);g.connect(audio.destination);o.start();o.stop(audio.currentTime+.2)}catch(e){}}
+for(let i=0;i<18;i++){const h=document.createElement('span');h.className='bg-heart';h.textContent=['♡','♥','✦'][i%3];h.style.left=Math.random()*100+'vw';h.style.animationDelay=(-Math.random()*8)+'s';h.style.animationDuration=(6+Math.random()*6)+'s';document.getElementById('floaters').appendChild(h)}
+render();
+</script>
+</body></html>
